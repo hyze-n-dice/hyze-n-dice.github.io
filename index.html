@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<title>Hyze-n-Dice™</title>
+    <style>
+        body {
+          padding: 0;
+          margin: 0;
+          background: #eec;
+          color: #333;
+          font-family: mono;
+          user-select: none;
+        }
+        #p-output {
+          margin: 1%;
+          font-size:8vmax;
+        }
+        #logo {
+          font-size: 2vw;
+          text-align: right;
+        }
+        .active {
+          position:absolute;
+          top: 0;
+          left: 0;
+          background-color: #bca136;
+          width: 0;
+          height: 100vh; 
+          animation: progress 1s linear;
+          animation-fill-mode:both; 
+          opacity: 0.7;
+        }
+        @keyframes progress {
+          0% { width: 0; }
+          100% { width: 100vw; }
+        }
+    </style>
+		<script>
+      var stability_type = [
+        "a <span style='background: #052049;color:white'>stable</span>",
+        "an <span style='background: #007cbe;color:white'>understable</span>",
+        "an <span style='background: #064888;color:white'>overstable</span>"
+      ];
+      var disc_type = [
+        "<span style='background: #9a2617;color:white'>putter</span>",
+        "<span style='background: #ad2a1a;color:white'>midrange</span>",
+        "<span style='background: #c02f1d;color:white'>fairway&nbsp;driver</span>",
+        "<span style='background: #cd594a;color:white'>distance&nbsp;driver</span>"
+      ];
+      var release_type = [
+        "a <span style='background: #829356;color:white'>hyzer</span>",
+        "an <span style='background: #93a661;color:white'>anhyzer</span>",
+        "a <span style='background: #a3b86c;color:white'>flat</span>",
+        "a <span style='background: #bca136;color:white'>thumber</span>",
+        "a <span style='background: #da621e;color:white'>tomahawk</span>"
+      ];
+
+      var render = function() {
+        var container = document.getElementById("p-output");
+        var stability = stability_type[Math.floor(Math.random() * stability_type.length)];
+        var disc      = disc_type[Math.floor(Math.random() * disc_type.length)];
+        var release   = release_type[Math.floor(Math.random() * release_type.length)];
+        text = 'Throw ' + stability + ' ' + disc + ' with ' + release + ' release';
+        container.innerHTML = text;
+      };
+
+      var countHit = function() {
+        try {
+          document.getElementById("hit-counter").src = "https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fhyze-n-dice.github.ioa&count_bg=%2379C83D&title_bg=%23555555&icon_color=%23E7E7E7&title=Badass+lines+created&edge_flat=false&time=" + Date.now();
+        } catch (err) {}
+      };
+
+      var holdit = function(start, speedup) {
+          var timeout;
+          var loader = document.getElementById("loader");
+          var rerender = function() {
+            render();
+            countHit();
+            loader.classList.remove("active")
+          };
+
+          var start = function() {
+            timeout = setTimeout(rerender, 1000);
+            loader.classList.add("active")
+          };
+          var clear = function() {
+            clearTimeout(timeout);
+            loader.classList.remove("active")
+          };
+
+          document.addEventListener("mousedown", start, false)
+          document.addEventListener("touchstart", start, false)
+          document.addEventListener("mouseup", clear, false)
+          document.addEventListener("touchend", clear, false)
+      };
+
+      document.addEventListener('DOMContentLoaded', function() {
+        render();
+        countHit();
+        holdit();
+      });
+
+      if (navigator.serviceWorker) {
+        try {
+          navigator.serviceWorker.register('/sw.js', {scope: '/'});
+        } catch (err) {}
+      };
+		</script>
+	</head>
+	<body>
+    <div id="loader"></div>
+    <p id="p-output"></p>
+    <p id="logo"><img id="hit-counter" src=""/> Hyze-n-Dice™</p>
+	</body>
+</html>
