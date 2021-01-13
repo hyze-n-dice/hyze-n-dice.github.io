@@ -39,20 +39,30 @@
     </style>
 		<script>
       var stability_type = [
+        "<span style='background: #052049;color:white'>any</span>",
         "a <span style='background: #052049;color:white'>stable</span>",
         "an <span style='background: #007cbe;color:white'>understable</span>",
         "an <span style='background: #064888;color:white'>overstable</span>"
       ];
+
       var disc_type = [
+        "<span style='background: #9a2617;color:white'>disc</span>",
         "<span style='background: #9a2617;color:white'>putter</span>",
         "<span style='background: #ad2a1a;color:white'>midrange</span>",
         "<span style='background: #c02f1d;color:white'>fairway&nbsp;driver</span>",
         "<span style='background: #cd594a;color:white'>distance&nbsp;driver</span>"
       ];
+
       var release_type = [
         "a <span style='background: #829356;color:white'>hyzer</span>",
+        "a <span style='background: #9a2617;color:white'>backhand</span> <span style='background: #829356;color:white'>hyzer</span>",
+        "a <span style='background: #064888;color:white'>forehand</span> <span style='background: #829356;color:white'>hyzer</span>",
         "an <span style='background: #93a661;color:white'>anhyzer</span>",
+        "a <span style='background: #9a2617;color:white'>backhand</span> <span style='background: #93a661;color:white'>anhyzer</span>",
+        "a <span style='background: #064888;color:white'>forehand</span> <span style='background: #93a661;color:white'>anhyzer</span>",
         "a <span style='background: #a3b86c;color:white'>flat</span>",
+        "a <span style='background: #a3b86c;color:white'>flat</span> <span style='background: #9a2617;color:white'>backhand</span> ",
+        "a <span style='background: #a3b86c;color:white'>flat</span> <span style='background: #064888;color:white'>forehand</span>",
         "a <span style='background: #bca136;color:white'>thumber</span>",
         "a <span style='background: #da621e;color:white'>tomahawk</span>"
       ];
@@ -62,7 +72,7 @@
         var stability = stability_type[Math.floor(Math.random() * stability_type.length)];
         var disc      = disc_type[Math.floor(Math.random() * disc_type.length)];
         var release   = release_type[Math.floor(Math.random() * release_type.length)];
-        text = 'Throw ' + stability + ' ' + disc + ' with ' + release + ' release';
+        var text = 'Throw ' + stability + ' ' + disc + ' with ' + release + ' release';
         container.innerHTML = text;
       };
 
