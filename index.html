@@ -46,7 +46,7 @@
       ];
 
       var disc_type = [
-        "<span style='background: #9a2617;color:white'>disc</span>",
+        "<span style='background: #2a9617;color:white'>disc</span>",
         "<span style='background: #9a2617;color:white'>putter</span>",
         "<span style='background: #ad2a1a;color:white'>midrange</span>",
         "<span style='background: #c02f1d;color:white'>fairway&nbsp;driver</span>",
@@ -72,7 +72,11 @@
         var stability = stability_type[Math.floor(Math.random() * stability_type.length)];
         var disc      = disc_type[Math.floor(Math.random() * disc_type.length)];
         var release   = release_type[Math.floor(Math.random() * release_type.length)];
-        var text = 'Throw ' + stability + ' ' + disc + ' with ' + release + ' release';
+
+        var text = "Throw " + stability + " " + disc + " with " + release + " release";
+        if (Math.random() > 0.95) {
+          text = "Throw a <span style='background:#bca136;color:white;'>roller</span> with " + stability + " " + disc;
+        }
         container.innerHTML = text;
       };
 
